@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>List User</title>
+		<title>List Barang</title>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -20,34 +20,28 @@
 	</head>
 	<body>
 	<div class="container">
-		<h1 class="text-center">List User</h1>
-	<?php echo "<a href='".base_url()."index.php/user/create/' class='btn btn-primary'>Tambah</a>"; ?>
+		<h1 class="text-center">List Barang</h1>
 		
 		<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Nama User</th>
-						<th>Alamat User</th>
-						<th>Username</th>
-						<th>Level</th>
+						<th>Nama Barang</th>
+						<th>Stok Barang</th>
+						<th>Foto</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
-					foreach ($user_list as $row) {
+					foreach ($barang_list as $row) {
 						echo "<tr><td>";
-						echo $row['nama_user'];
+						echo $row['nama_barang'];
 						echo "</td><td>";
-						echo $row['alamat_user'];
+						echo $row['stok_barang'];
 						echo "</td><td>";
-						echo $row['username'];
+						echo "<img src='".base_url('assets/uploads/').$row['foto']."'width='100px;'>";
 						echo '</td><td>';
-						echo $row['level'];
-						echo '</td><td>';
-						echo "<a href='".base_url()."index.php/user/update/".$row['id_user']."' class='btn btn-warning'>Update</a>";
-						echo " ";
-						echo "<a href='".base_url()."index.php/user/delete/".$row['id_user']."' class='btn btn-danger'>Hapus</a>";
+						echo "<a href='".base_url()."index.php/peminjaman/pinjam/".$row['id_barang']."' class='btn btn-primary'>Pinjam</a>";
 						echo "</td></tr>";
 					}
 

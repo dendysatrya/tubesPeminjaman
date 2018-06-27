@@ -1,12 +1,10 @@
-<?php  ?>
-
 <!DOCTYPE html>
 <html lang="">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>List User</title>
+		<title>Login</title>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -19,44 +17,32 @@
 		<![endif]-->
 	</head>
 	<body>
-	<div class="container">
-		<h1 class="text-center">List User</h1>
-	<?php echo "<a href='".base_url()."index.php/user/create/' class='btn btn-primary'>Tambah</a>"; ?>
-		
-		<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Nama User</th>
-						<th>Alamat User</th>
-						<th>Username</th>
-						<th>Level</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					foreach ($user_list as $row) {
-						echo "<tr><td>";
-						echo $row['nama_user'];
-						echo "</td><td>";
-						echo $row['alamat_user'];
-						echo "</td><td>";
-						echo $row['username'];
-						echo '</td><td>';
-						echo $row['level'];
-						echo '</td><td>';
-						echo "<a href='".base_url()."index.php/user/update/".$row['id_user']."' class='btn btn-warning'>Update</a>";
-						echo " ";
-						echo "<a href='".base_url()."index.php/user/delete/".$row['id_user']."' class='btn btn-danger'>Hapus</a>";
-						echo "</td></tr>";
-					}
+		<div class="container-fluid">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
+				<?php echo form_open('login/ceklogin') ?>
+				<div class="form-group">
+					<legend>Login ke sistem</legend>
+				</div>
 
+				<?php echo validation_errors(); ?>
+				<div class="form-group">
+					<label>Username</label>
+					<input type="text" class="form-control" name="username" placeholder="Isikan username">
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" class="form-control" name="password" placeholder="Isikan password">
+				</div>
+				
+				<br>
 
-					?>
-				</tbody>
-			</table>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
 			</div>
+		</div>
+
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->

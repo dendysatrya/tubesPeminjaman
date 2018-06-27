@@ -54,6 +54,17 @@
  						<label>Konfirmasi Password</label>
  						<input type="password" class="form-control" id="password2" name="password2" placeholder="Tidak Perlu Diisi Bila Tidak Ingin Ganti">
  					</div>
+ 					<div class="form-group">
+ 						<label>Level<font color="red">*</font></label><br>
+ 						<select name="level" class="form-control">
+ 							<option value="admin" <?php if ($user[0]->level == 'admin'): ?>
+ 								selected
+ 							<?php endif ?>>Admin</option>
+ 							<option value="peminjam" <?php if ($user[0]->level == 'peminjam'): ?>
+ 								selected
+ 							<?php endif ?>>Peminjam</option>
+ 						</select>
+ 					</div>
 
  					<font color="red"><i>* Wajib diisi</i></font>
 					<br>

@@ -51,7 +51,13 @@
  						<label>Konfirmasi Password<font color="red">*</font></label>
  						<input type="password" class="form-control" id="password2" name="password2" placeholder="Isikan Konfirmasi Password">
  					</div>
-
+ 					<div class="form-group">
+ 						<label>Level<font color="red">*</font></label><br>
+ 						<select name="level" class="form-control">
+ 							<option value="admin">Admin</option>
+ 							<option value="peminjam">Peminjam</option>
+ 						</select>
+ 					</div>
  					<font color="red"><i>* Wajib diisi</i></font>
 					<br>
 					<br>

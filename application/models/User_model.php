@@ -24,6 +24,7 @@ class User_model extends CI_Model
             'alamat_user' => $this->input->post('alamat_user'),
             'username' => $this->input->post('username'),
             'password' => md5($this->input->post('password')),
+            'level' => $this->input->post('level'),
 
         );
         $this->db->insert('user', $data);
@@ -44,12 +45,14 @@ class User_model extends CI_Model
             'alamat_user' => $this->input->post('alamat_user'),
             'username' => $this->input->post('username'),
             'password' => md5($this->input->post('password')),
+            'level' => $this->input->post('level'),
             );
         } else {
             $data = array(
             'nama_user' => $this->input->post('nama_user'),
             'alamat_user' => $this->input->post('alamat_user'),
             'username' => $this->input->post('username'),
+            'level' => $this->input->post('level'),
             );
         }
         
@@ -61,6 +64,22 @@ class User_model extends CI_Model
     public function deleteUser($id) {
         $this->db->where('id_user', $id);
         $this->db->delete('user');
+    }
+
+    public function login($username, $password)
+    {
+        $this->db->select('id_user, nama_user, username, password, level');
+        $this->db->from('user');
+        $this->db->where('username', $username);
+        $this->db->where('password', MD5($password));
+        $query = $this->db->get();
+        if ($query->num_rows()==1) {
+            return $query->result();
+        } else {
+            return false;
+        }
+
+
     }
 }
 ?>
