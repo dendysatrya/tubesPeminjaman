@@ -20,12 +20,8 @@ class User extends CI_Controller
             $this->data_user['username'] = $data['username'];
             $this->data_user['nama_user'] = $data['nama_user'];
             $this->data_user['level'] = $data['level'];
-            $current_controller = $this->router->fetch_class();
-            $this->load->library('acl');
-            if (! $this->acl->is_public($current_controller)) {
-                if (! $this->acl->is_allowed($current_controller, $data['level'])) {
-                    redirect('false','refresh');
-                }
+            if ($this->data_user['level'] != "admin") {
+                redirect('false','refresh');
             }
         } else {
             redirect('login','refresh');
