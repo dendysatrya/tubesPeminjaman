@@ -21,7 +21,7 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<div class="alert alert-success">Permintaan peminjaman barang telah disetujui</div>
-				<a href="<?php echo base_url('peminjaman/request') ?>" class="btn btn-primary">Kembali</a>
+				<a href="<?php echo base_url('index.php/peminjaman/request') ?>" class="btn btn-primary">Kembali</a>
 			</div>
 			<div class="col-md-4"></div>
 		</div>

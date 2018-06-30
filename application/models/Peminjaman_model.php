@@ -26,6 +26,20 @@ class Peminjaman_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getTerpinjamSemua () {
+		$query = $this->db->query("SELECT * FROM peminjaman JOIN barang ON id_barang = fk_barang JOIN user ON id_user = fk_user WHERE persetujuan = 'sudah'");
+		return $query->result_array();
+	}
+
+	public function getTerpinjamBelumKembali () {
+		$query = $this->db->query("SELECT * FROM peminjaman JOIN barang ON id_barang = fk_barang JOIN user ON id_user = fk_user WHERE persetujuan = 'sudah' AND pengembalian='belum'");
+		return $query->result_array();
+	}
+
+	public function getTerpinjamSudahKembali () {
+		$query = $this->db->query("SELECT * FROM peminjaman JOIN barang ON id_barang = fk_barang JOIN user ON id_user = fk_user WHERE persetujuan = 'sudah' AND pengembalian='sudah'");
+		return $query->result_array();
+	}
 
 	public function insertPeminjaman() {
 		$data = array(

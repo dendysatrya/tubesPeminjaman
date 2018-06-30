@@ -23,6 +23,11 @@ class Peminjaman extends CI_Controller {
 		}
 	}
 
+	public function index() {
+		$this->load->view('Admin/navbar', $this->data_user);
+		$this->load->view('Admin/Peminjaman/peminjaman_header');
+	}
+
 	public function pinjam($id)
 	{
 		$this->load->model('Peminjaman_model');
@@ -54,10 +59,48 @@ class Peminjaman extends CI_Controller {
 			$data['list'] = $this->Peminjaman_model->getPeminjamanBelumDisetujui();
 
 			$this->load->view('Admin/navbar', $this->data_user);
+			$this->load->view('Admin/Peminjaman/peminjaman_header');
 			$this->load->view('Admin/Peminjaman/req_setuju', $data);	
 
 
 			
+		} else {
+			redirect('false','refresh');
+		}
+	}
+
+	public function terpinjam($status) {
+		if ($this->data_user['level'] == 'admin') {
+			$this->load->model('Peminjaman_model');
+
+
+			if ($status == 'semua') {
+				$data['terpinjam'] = $this->Peminjaman_model->getTerpinjamSemua();
+
+				$this->load->view('Admin/navbar', $this->data_user);
+				$this->load->view('Admin/Peminjaman/peminjaman_header');
+				$this->load->view('Admin/Peminjaman/terpinjam_semua', $data);	
+			}
+
+
+			if ($status == 'belum_kembali') {
+				$data['terpinjam'] = $this->Peminjaman_model->getTerpinjamBelumKembali();
+
+				$this->load->view('Admin/navbar', $this->data_user);
+				$this->load->view('Admin/Peminjaman/peminjaman_header');
+				$this->load->view('Admin/Peminjaman/terpinjam_belum_kembali', $data);	
+			}
+
+			if ($status == 'sudah_kembali') {
+				$data['terpinjam'] = $this->Peminjaman_model->getTerpinjamSudahKembali();
+
+				$this->load->view('Admin/navbar', $this->data_user);
+				$this->load->view('Admin/Peminjaman/peminjaman_header');
+				$this->load->view('Admin/Peminjaman/terpinjam_sudah_kembali', $data);	
+			}
+
+						
+
 		} else {
 			redirect('false','refresh');
 		}
@@ -70,6 +113,21 @@ class Peminjaman extends CI_Controller {
 			$this->Peminjaman_model->validasiPersetujuan($id);
 			$this->load->view('Admin/navbar', $this->data_user);
 			$this->load->view('Admin/Peminjaman/sukses_setuju');	
+
+
+			
+		} else {
+			redirect('false','refresh');
+		}
+	}
+
+	public function kembali($id)
+	{
+		if ($this->data_user['level'] == 'admin') {
+			$this->load->model('Peminjaman_model');
+			$this->Peminjaman_model->validasiPengembalian($id);
+			$this->load->view('Admin/navbar', $this->data_user);
+			$this->load->view('Admin/Peminjaman/sukses_kembali');
 
 
 			
